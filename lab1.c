@@ -81,13 +81,18 @@ void Control(void){
   int i;
   Status LastStatus=0;
   while (1) {
-    printf("%10.3f   Flags = %d - \n ", Now(), Flags);
+    printf("%10.3f\tFlags = %d - \n ", Now(), Flags);
     sleep(1); // Just to slow down to have time to see Flags
     if (Flags != LastStatus){
       LastStatus = Flags;
-      printf("\n >>>>>>>>>  >>> When: %10.3f  Flags = %d\n", Now(),
+      printf("\n>>> When: %10.3f  Flags = %d\n", Now(),
 	     Flags);
+       printf("\n%%%% TESTING %%%%");
+       printf("\nBUFFER LENGTH: %d", BufferLastEvent.length);
       for(int x = BufferLastEvent.length; x >= 0 && Flags > 0; x--) {
+        printf("\nCURRENT CHECK: %d", x);
+        printf("\nCURRENT FLAGS: %d", Flags);
+
         // if the current flag is not set, don't handle an event
         if(Flags > 2**x) continue;
 
