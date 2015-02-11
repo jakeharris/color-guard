@@ -92,13 +92,13 @@ void Control(void){
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
         unsigned int ex = exp2(x);
-        if(Show) {
-          printf("\tDevice %d\n", x);
-          fflush(stdout);
-          printf("\t\tFlag to check %d\n", (unsigned int)ex);
-          fflush(stdout);
-          printf("\t\tFlags %d\n", Flags);
-        }
+        // if(Show) {
+        //   printf("\tDevice %d\n", x);
+        //   fflush(stdout);
+        //   printf("\t\tFlag to check %d\n", (unsigned int)ex);
+        //   fflush(stdout);
+        //   printf("\t\tFlags %d\n", Flags);
+        // }
 
         // if the current flag is not set, don't handle an event
         if(Flags < ex) continue;
