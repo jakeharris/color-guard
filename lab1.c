@@ -144,8 +144,8 @@ void BookKeeping(void){
     printf("\tMissed %10.3f%% of total events on this device\n",
       100*(float)(totalEventsOnDevice - handled[x])/totalEventsOnDevice);
     printf("\n");
-    printf("\tAverage response time: \t\t%10.6f\n", (float)responseTimes[x]/handled[x]);
-    printf("\tAverage turn-around time: \t%10.6f\n", (float)turnAroundTimes[x]/handled[x]);
+    printf("\tAverage response time: \t\t%10.10f\n", (float)responseTimes[x]/handled[x]);
+    printf("\tAverage turn-around time: \t%10.10f\n", (float)turnAroundTimes[x]/handled[x]);
     printf("\n");
   }
 
@@ -157,7 +157,7 @@ void BookKeeping(void){
   printf("\tMissed %10.3f%% of total events\n",
     100*(float)(totalEvents - totalHandled)/totalEvents);
   printf("\n");
-  printf("\tAverage response time: \t\t%10.6f\n", (float)totalResponseTime/totalHandled);
-  printf("\tAverage turn-around time: \t%10.6f\n", (float)totalTurnAroundTime/totalHandled);
+  printf("\tAverage response time: \t\t%10.10f\n", (float)totalResponseTime/totalHandled);
+  printf("\tAverage turn-around time: \t%10.10f\n", (float)totalTurnAroundTime/totalHandled);
   printf("\n");
 }
