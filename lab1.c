@@ -83,15 +83,17 @@ int main (int argc, char **argv) {
 void Control(void){
   int x;
   Status LastStatus=0;
+  Status relStatus=0;
 
   while (1) {
     if (Flags != LastStatus){
       LastStatus = Flags;
-      for(x = len; x >= 0 && LastStatus > 0; x--) {
+      relStatus = Flags;
+      for(x = len; x >= 0 && relStatus > 0; x--) {
         long unsigned int ex = exp2(x);
 
         // if the current flag is not set, don't handle an event
-        if(LastStatus < ex) continue;
+        if(relStatus < ex) continue;
 
         Event * e = &BufferLastEvent[x];
         if(Show) {
@@ -102,6 +104,8 @@ void Control(void){
         Server(e);
         turnAroundTimes[x] += Now() - e->When;
         handled[x]++;
+
+        relStatus -= ex;
         Flags -= ex;
       }
     }
