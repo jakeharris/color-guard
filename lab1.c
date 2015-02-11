@@ -86,7 +86,6 @@ void Control(void){
 
   while (1) {
     printf("%10.3f\tFlags = %d \n ", Now(), Flags);
-    sleep(1); // Just to slow down to have time to see Flags
     if (Flags != LastStatus){
       LastStatus = Flags;
       printf("\n>>> When: %10.3f  Flags = %d\n", Now(),
