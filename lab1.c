@@ -92,8 +92,7 @@ void Control(void){
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
         int ex = exp2(x);
-        printf("\n\tCHECK: %d -> ", x);
-        printf("%u", ex);
+        printf("\n\tCHECK: %d -> %d", ex);
         printf("\n\tFLAGS: %d", Flags);
 
         // if the current flag is not set, don't handle an event
