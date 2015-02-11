@@ -39,8 +39,8 @@
 int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
 
 int handled[32] = { 0 };
-int responseTimes[32] = { 0 };
-int turnAroundTimes[32] = { 0 };
+float responseTimes[32] = { 0 };
+float turnAroundTimes[32] = { 0 };
 
 
 /*****************************************************************************\
