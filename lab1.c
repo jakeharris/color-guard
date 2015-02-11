@@ -103,9 +103,9 @@ void Control(void){
           printf("\n");
           DisplayEvent('m', e);
         }
-        responseTimes[x] += e->When - Now();
+        responseTimes[x] += Now() - e->When;
         Server(e);
-        turnAroundTimes[x] += e->When - Now();
+        turnAroundTimes[x] += Now() - e->When;
         handled[x]++;
         Flags -= ex;
       }
@@ -132,7 +132,7 @@ void BookKeeping(void){
   for(x; x < len; x++) {
     if(handled[x] <= 0) continue;
 
-    int totalEventsOnDevice = &BufferLastEvent[x].EventID;
+    int totalEventsOnDevice = (int)&BufferLastEvent[x].EventID;
 
     totalEvents += totalEventsOnDevice;
     totalHandled += handled[x];
