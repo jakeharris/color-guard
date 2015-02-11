@@ -103,9 +103,9 @@ void Control(void){
           printf("\n");
           DisplayEvent('m', e);
         }
-        responseTimes[x] += e.When - Now();
+        responseTimes[x] += e->When - Now();
         Server(e);
-        turnAroundTimes[x] += e.When - Now();
+        turnAroundTimes[x] += e->When - Now();
         handled[x]++;
         Flags -= ex;
       }
