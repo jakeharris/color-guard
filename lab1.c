@@ -98,7 +98,7 @@ void Control(void){
         // if the current flag is not set, don't handle an event
         if(Flags > exp2(x)) continue;
 
-        Event * e = BufferLastEvent[x];
+        Event * e = &BufferLastEvent[x];
         if(Show) {
           DisplayEvent('m', e);
         }
