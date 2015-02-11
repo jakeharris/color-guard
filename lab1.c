@@ -87,14 +87,18 @@ void Control(void){
       LastStatus = Flags;
       printf("\n>>> When: %10.3f  Flags = %d\n", Now(),
 	     Flags);
-       printf("\n%%%% TESTING %%%%");
+       printf("\n%%%% TESTING %%%%\n");
        int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
         long unsigned int ex = exp2(x);
-        printf("\tDevice %d\n", x);
-        printf("\t\tValue of device's flag is %lu\n", ex);
-        printf("\t\tFlags %su\n", Flags);
+        if(Show) {
+          printf("\tDevice %d\n", x);
+          fflush(stdout);
+          printf("\t\tFlag to check %lu\n", ex);
+          fflush(stdout);
+          printf("\t\tFlags %su\n", Flags);
+        }
 
         // if the current flag is not set, don't handle an event
         if(Flags < ex) continue;
