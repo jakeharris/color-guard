@@ -1,9 +1,7 @@
 # color-guard
 Lab 1 for Embedded Systems. Watches and responds to flags.
 
-Below is the Word doc describing the objectives:
-
-COMP 3510 Embedded Systems Development
+Below is the Word doc describing the objectives.
 
 ## Lab Assignment 1
 By Group (2 students at most per group)
