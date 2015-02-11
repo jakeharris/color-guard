@@ -96,13 +96,14 @@ void Control(void){
         printf("\nCURRENT FLAGS: %d", Flags);
 
         // if the current flag is not set, don't handle an event
-        if(Flags > exp2(x)) continue;
+        if(Flags < exp2(x)) continue;
 
         Event * e = &BufferLastEvent[x];
         if(Show) {
           DisplayEvent('m', e);
         }
         Server(e);
+        Flags -= exp2(x);
       }
     }
   }
