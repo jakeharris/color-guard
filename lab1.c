@@ -92,8 +92,8 @@ void Control(void){
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
         long unsigned int ex = exp2(x);
-        printf("\tCHECK: %d -> %u\n", x, ex);
-        printf("\tFLAGS: %u\n", Flags);
+        printf("\tCHECK: %d -> %lu\n", x, ex);
+        printf("\tFLAGS: %su\n", Flags);
 
         // if the current flag is not set, don't handle an event
         if(Flags < ex) continue;
