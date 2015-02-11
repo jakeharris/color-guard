@@ -90,14 +90,15 @@ void Control(void){
        printf("\n%%%% TESTING %%%%");
        int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
        printf("\nBUFFER LENGTH: %d", len);
-      for(int x = len; x >= 0 && Flags > 0; x--) {
+       int x = len;
+      for(x; x >= 0 && Flags > 0; x--) {
         printf("\nCURRENT CHECK: %d", x);
         printf("\nCURRENT FLAGS: %d", Flags);
 
         // if the current flag is not set, don't handle an event
-        if(Flags > 2**x) continue;
+        if(Flags > exp2(x)) continue;
 
-        Event e = BufferLastEvent[x];
+        Event * e = BufferLastEvent[x];
         if(Show) {
           DisplayEvent('m', e);
         }
