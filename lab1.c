@@ -36,8 +36,11 @@
 /*****************************************************************************\
 *                                  Global data                                *
 \*****************************************************************************/
+int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
 
-
+int handled[32] = { 0 };
+int responseTimes[32] = { 0 };
+int turnAroundTimes[32] = { 0 };
 
 
 /*****************************************************************************\
@@ -80,6 +83,7 @@ int main (int argc, char **argv) {
 void Control(void){
   int i;
   Status LastStatus=0;
+
   while (1) {
     printf("%10.3f\tFlags = %d \n ", Now(), Flags);
     sleep(1); // Just to slow down to have time to see Flags
@@ -87,17 +91,9 @@ void Control(void){
       LastStatus = Flags;
       printf("\n>>> When: %10.3f  Flags = %d\n", Now(),
 	     Flags);
-       int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
         long unsigned int ex = exp2(x);
-        // if(Show) {
-        //   printf("\tDevice %d\n", x);
-        //   fflush(stdout);
-        //   printf("\t\tFlag to check %d\n", (unsigned int)ex);
-        //   fflush(stdout);
-        //   printf("\t\tFlags %d\n", Flags);
-        // }
 
         // if the current flag is not set, don't handle an event
         if(Flags < ex) continue;
@@ -107,7 +103,10 @@ void Control(void){
           printf("\n");
           DisplayEvent('m', e);
         }
+        responseTimes[x] += e.When - Now();
         Server(e);
+        turnAroundTimes[x] += e.When - Now();
+        handled[x]++;
         Flags -= ex;
       }
     }
@@ -122,5 +121,44 @@ void Control(void){
 *           not yet processed (Server() function not yet called)        *
 \***********************************************************************/
 void BookKeeping(void){
-  printf("\n >>>>>> Done\n");
+  int x = 0;
+  int totalEvents = 0;
+  int totalHandled = 0;
+  int totalResponseTime = 0;
+  int totalTurnAroundTime = 0;
+
+  printf("DEVICE RESULTS =====\n\n");
+
+  for(x; x < len; x++) {
+    if(handled[x] <= 0) continue;
+
+    int totalEventsOnDevice = &BufferLastEvent[x].EventID;
+
+    totalEvents += totalEventsOnDevice;
+    totalHandled += handled[x];
+    totalResponseTime += responseTimes[x];
+    totalTurnAroundTime += turnAroundTimes[x];
+
+    printf("\tDevice %d ==========\n", x);
+    printf("\t\tHandled %d events\n", handled[x]);
+    printf("\t\tMissed %d events\n", totalEventsOnDevice - handled[x]);
+    printf("\t\tMissed %10.3f%% of total events on this device\n",
+      100*(float)(totalEventsOnDevice - handled[x])/totalEventsOnDevice);
+    printf("\n");
+    printf("\t\tAverage response time: \t%10.3f\n", (float)responseTimes[x]/handled[x]);
+    printf("\t\tAverage turn-around time: \t%10.3f\n", (float)turnAroundTimes[x]/handled[x]);
+    printf("\n");
+  }
+
+  printf("TOTAL RESULTS =====\n\n");
+
+  printf("\tTotal events generated: %d\n", totalEvents);
+  printf("\tTotal events handled: %d\n", totalHandled);
+  printf("\tTotal events missed: %d\n", totalEvents - totalHandled);
+  printf("\tMissed %10.3f%% of total events\n",
+    100*(float)(totalEvents - totalHandled)/totalEvents);
+  printf("\n");
+  printf("\tAverage response time: \t%10.3f\n", (float)totalResponseTime/totalHandled);
+  printf("\tAverage turn-around time: \t%10.3f\n", (float)totalTurnAroundTime/totalHandled);
+  printf("\n");
 }
