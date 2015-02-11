@@ -97,7 +97,7 @@ void Control(void){
           fflush(stdout);
           printf("\t\tFlag to check %d\n", (unsigned int)ex);
           fflush(stdout);
-          printf("\t\tFlags %su\n", Flags);
+          printf("\t\tFlags %d\n", Flags);
         }
 
         // if the current flag is not set, don't handle an event
