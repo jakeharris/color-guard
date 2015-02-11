@@ -127,7 +127,7 @@ void BookKeeping(void){
   int totalResponseTime = 0;
   int totalTurnAroundTime = 0;
 
-  printf("DEVICE RESULTS =====\n\n");
+  printf("\nDEVICE RESULTS =====\n\n");
 
   for(x; x < len; x++) {
     if(handled[x] <= 0) continue;
@@ -140,13 +140,13 @@ void BookKeeping(void){
     totalTurnAroundTime += turnAroundTimes[x];
 
     printf("\tDevice %d ==========\n", x);
-    printf("\t\tHandled %d events\n", handled[x]);
-    printf("\t\tMissed %d events\n", totalEventsOnDevice - handled[x]);
-    printf("\t\tMissed %10.3f%% of total events on this device\n",
+    printf("\tHandled %d events\n", handled[x]);
+    printf("\tMissed %d events\n", totalEventsOnDevice - handled[x]);
+    printf("\tMissed %10.3f%% of total events on this device\n",
       100*(float)(totalEventsOnDevice - handled[x])/totalEventsOnDevice);
     printf("\n");
-    printf("\t\tAverage response time: \t\t%10.6f\n", (float)responseTimes[x]/handled[x]);
-    printf("\t\tAverage turn-around time: \t%10.6f\n", (float)turnAroundTimes[x]/handled[x]);
+    printf("\tAverage response time: \t\t%10.6f\n", (float)responseTimes[x]/handled[x]);
+    printf("\tAverage turn-around time: \t%10.6f\n", (float)turnAroundTimes[x]/handled[x]);
     printf("\n");
   }
 
