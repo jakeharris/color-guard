@@ -88,8 +88,9 @@ void Control(void){
       printf("\n>>> When: %10.3f  Flags = %d\n", Now(),
 	     Flags);
        printf("\n%%%% TESTING %%%%");
-       printf("\nBUFFER LENGTH: %d", BufferLastEvent.length);
-      for(int x = BufferLastEvent.length; x >= 0 && Flags > 0; x--) {
+       int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
+       printf("\nBUFFER LENGTH: %d", len);
+      for(int x = len; x >= 0 && Flags > 0; x--) {
         printf("\nCURRENT CHECK: %d", x);
         printf("\nCURRENT FLAGS: %d", Flags);
 
