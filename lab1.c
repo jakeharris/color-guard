@@ -91,12 +91,13 @@ void Control(void){
        int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
+        int ex = exp2(x);
         printf("\n\tCHECK: %d -> ", x);
-        printf("%u", exp2(x));
+        printf("%u", ex);
         printf("\n\tFLAGS: %d", Flags);
 
         // if the current flag is not set, don't handle an event
-        if(Flags < exp2(x)) continue;
+        if(Flags < ex) continue;
 
         Event * e = &BufferLastEvent[x];
         if(Show) {
@@ -104,7 +105,7 @@ void Control(void){
           DisplayEvent('m', e);
         }
         Server(e);
-        Flags -= exp2(x);
+        Flags -= ex;
       }
     }
   }
