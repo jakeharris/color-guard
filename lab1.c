@@ -91,7 +91,8 @@ void Control(void){
        int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
-        printf("\n\tCHECK: %d -> %u", x, exp2(x));
+        printf("\n\tCHECK: %d -> ", x);
+        printf("%u", exp2(x));
         printf("\n\tFLAGS: %d", Flags);
 
         // if the current flag is not set, don't handle an event
