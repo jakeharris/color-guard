@@ -95,7 +95,7 @@ void Control(void){
         if(Show) {
           printf("\tDevice %d\n", x);
           fflush(stdout);
-          printf("\t\tFlag to check %u\n", ex);
+          printf("\t\tFlag to check %u\n", &ex);
           fflush(stdout);
           printf("\t\tFlags %su\n", Flags);
         }
