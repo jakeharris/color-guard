@@ -95,7 +95,7 @@ void Control(void){
         if(Show) {
           printf("\tDevice %d\n", x);
           fflush(stdout);
-          printf("\t\tFlag to check %u\n", (unsigned int)&ex);
+          printf("\t\tFlag to check %d\n", (unsigned int)ex);
           fflush(stdout);
           printf("\t\tFlags %su\n", Flags);
         }
@@ -105,7 +105,7 @@ void Control(void){
 
         Event * e = &BufferLastEvent[x];
         if(Show) {
-          printf('\n');
+          printf("\n");
           DisplayEvent('m', e);
         }
         Server(e);
