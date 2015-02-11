@@ -69,7 +69,7 @@ int main (int argc, char **argv) {
 
    if (Initialization(argc,argv)){
      Control();
-   } 
+   }
 } /* end of main function */
 
 /***********************************************************************\
@@ -87,6 +87,16 @@ void Control(void){
       LastStatus = Flags;
       printf("\n >>>>>>>>>  >>> When: %10.3f  Flags = %d\n", Now(),
 	     Flags);
+      for(int x = BufferLastEvent.length; x >= 0 && Flags > 0; x--) {
+        // if the current flag is not set, don't handle an event
+        if(Flags > 2**x) continue;
+
+        Event e = BufferLastEvent[x];
+        if(Show) {
+          DisplayEvent('m', e);
+        }
+        Server(e);
+      }
     }
   }
 }
@@ -101,13 +111,3 @@ void Control(void){
 void BookKeeping(void){
   printf("\n >>>>>> Done\n");
 }
-
-
-
-
-
-
-
-
-
-
