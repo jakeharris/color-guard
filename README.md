@@ -57,7 +57,7 @@ When a device generates an event, you must display this event (you may use the f
 We assume that the devices do not generate interrupts: whenever an event occurs, the device raises a bit flag in the variable Flags and stores the last event in the buffer. There is storage for only one event on each device.   Note that devices raise the flags in the variable Flags, but the function Server does not reset the flags in Flags. It is your responsibility to reset the corresponding flag as/when appropriate.
 
 Your code must process events such that you miss as few events without forking processes or threads: we assume that there is no real time OS support. You will be provided three files: common.h, devices.o, and lab1.c. You are not allowed to modify the file common.h or the main function in the lab1.c file. In the file lab1.c, you must develop your code INSIDE the function Control(). You may add global variables or routines (functions, methods) in the file lab1.c. To compile your program, 
-you must type: `cc-o lab1 devices.o lab1.c -lm`
+you must type: `cc -o lab1 devices.o lab1.c -lm`
 where  
 
 - `devices.o` is the object file that emulates devices generating events
@@ -103,7 +103,7 @@ For each combination, you must collect the number of missed events (events gener
 - “Play” with code Control() in lab1.c for detecting all events, then try to process them.
 
 ## What to turn in?
-Electronic copy of your report and the C source code lab1.c. These two files must be put in a zipped folder named lab1-name1-name2 where name1 and name2 are the last names of the teammates (on Canvas). Zip the folder and post it on Canvas. Use Microsoft Word for the report to get feedback. A penalty of 10 points will be applied if these instructions are not followed.
+Electronic copy of your report and the C source code lab1.c. These two files must be put in a zipped folder named `lab1-name1-name2` where `name1` and `name2` are the last names of the teammates (on Canvas). Zip the folder and post it on Canvas. Use Microsoft Word for the report to get feedback. A penalty of 10 points will be applied if these instructions are not followed.
 
 **Your report must:**
 
