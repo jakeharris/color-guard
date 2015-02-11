@@ -87,7 +87,6 @@ void Control(void){
       LastStatus = Flags;
       printf("\n>>> When: %10.3f  Flags = %d\n", Now(),
 	     Flags);
-       printf("\n%%%% TESTING %%%%\n");
        int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
