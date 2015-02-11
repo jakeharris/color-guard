@@ -91,11 +91,11 @@ void Control(void){
        int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
-        long unsigned int ex = exp2(x);
+        unsigned int ex = exp2(x);
         if(Show) {
           printf("\tDevice %d\n", x);
           fflush(stdout);
-          printf("\t\tFlag to check %lu\n", ex);
+          printf("\t\tFlag to check %u\n", ex);
           fflush(stdout);
           printf("\t\tFlags %su\n", Flags);
         }
