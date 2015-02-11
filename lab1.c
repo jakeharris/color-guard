@@ -81,7 +81,7 @@ void Control(void){
   int i;
   Status LastStatus=0;
   while (1) {
-    printf("%10.3f\tFlags = %d - \n ", Now(), Flags);
+    printf("%10.3f\tFlags = %d \n ", Now(), Flags);
     sleep(1); // Just to slow down to have time to see Flags
     if (Flags != LastStatus){
       LastStatus = Flags;
@@ -89,17 +89,17 @@ void Control(void){
 	     Flags);
        printf("\n%%%% TESTING %%%%");
        int len = sizeof(BufferLastEvent) / sizeof(BufferLastEvent[0]);
-       printf("\nBUFFER LENGTH: %d", len);
        int x = len;
       for(x; x >= 0 && Flags > 0; x--) {
-        printf("\nCURRENT CHECK: %d", x);
-        printf("\nCURRENT FLAGS: %d", Flags);
+        printf("\n\tCHECK: %d -> %d", x, exp2(x));
+        printf("\n\tFLAGS: %d", Flags);
 
         // if the current flag is not set, don't handle an event
         if(Flags < exp2(x)) continue;
 
         Event * e = &BufferLastEvent[x];
         if(Show) {
+          printf('\n');
           DisplayEvent('m', e);
         }
         Server(e);
