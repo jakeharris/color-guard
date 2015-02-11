@@ -95,14 +95,14 @@ void Control(void){
         // if the current flag is not set, don't handle an event
         if(relStatus < ex) continue;
 
-        Event * e = &BufferLastEvent[x];
+        Event e = BufferLastEvent[x];
         if(Show) {
           printf("\n");
-          DisplayEvent('m', e);
+          DisplayEvent('m', &e);
         }
-        responseTimes[x] += Now() - e->When;
-        Server(e);
-        turnAroundTimes[x] += Now() - e->When;
+        responseTimes[x] += Now() - e.When;
+        Server(&e);
+        turnAroundTimes[x] += Now() - e.When;
         handled[x]++;
 
         relStatus -= ex;
