@@ -132,7 +132,7 @@ void BookKeeping(void){
   for(x; x < len; x++) {
     if(handled[x] <= 0) continue;
 
-    int totalEventsOnDevice = (int)BufferLastEvent[x].EventID;
+    int totalEventsOnDevice = (int)BufferLastEvent[x].EventID + 1;
 
     totalEvents += totalEventsOnDevice;
     totalHandled += handled[x];
