@@ -81,20 +81,17 @@ int main (int argc, char **argv) {
  * Function: Monitor Devices and process events                          *
  \***********************************************************************/
 void Control(void){
-  int i;
+  int x;
   Status LastStatus=0;
 
   while (1) {
     if (Flags != LastStatus){
       LastStatus = Flags;
-      printf("\n>>> When: %10.3f  Flags = %d\n", Now(),
-	     Flags);
-       int x = len;
-      for(x; x >= 0 && Flags > 0; x--) {
+      for(x = len; x >= 0 && LastStatus > 0; x--) {
         long unsigned int ex = exp2(x);
 
         // if the current flag is not set, don't handle an event
-        if(Flags < ex) continue;
+        if(LastStatus < ex) continue;
 
         Event * e = &BufferLastEvent[x];
         if(Show) {
